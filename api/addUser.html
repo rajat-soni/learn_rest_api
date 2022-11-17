@@ -119,7 +119,7 @@ function insertUser(){
         });
     }else{
     $("#error").fadeIn(2000, function(){
-        $("#error").html("<p class='alert alert-info'>Fields should not be empty</p>").fadeOut(3000);
+        $("#error").html("<p class='alert alert-info'>Fields should not be empty</p>").slideToggle('slow').fadeOut(3000);
           
         })
     }

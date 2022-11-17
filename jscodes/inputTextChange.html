@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change text</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+  
+</head>
+<body>
+   
+       <p id = "myheading">Please Change My color to type in text box</p>
+       <input type='text'  id = "myInput">
+       <button type = "submit" id = "myBtn" name = "save">click me </button>
+
+        
+        
+      
+</body>
+<script> 
+        
+            var myheading = document.getElementById('myheading');
+           
+            var myInput = document.getElementById('myInput');
+  
+            var myBtn = document.getElementById('myBtn');
+         
+            
+
+            myBtn.addEventListener("click",
+            ()=> {
+                
+                myheading.style.color = myInput.value;
+            })
+      
+ </script>
+</html>

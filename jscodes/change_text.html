@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change text</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+  
+</head>
+<body>
+   
+        <p id='myTxt'>Welcome to Rajat Soni Home </p> 
+        <p id='myTxt2'>Welcome to Prabhat Soni Home </p> 
+        <input type='button' id = "btnId" value='Change Text'>
+      
+</body>
+<script> 
+        var myTxt = document.getElementById('myTxt');
+        var myTxt2 = document.getElementById('myTxt2');
+        var chngCol = document.getElementById('btnId');
+        chngCol.addEventListener('click',
+        () => 
+        {
+            if(myTxt2.innnerText === 'Welcome to Prabhat Soni Home'){
+
+                myTxt.innerText = "Prabhat soni Home";
+            }else{
+                myTxt2.innerText = "Welcome to Rajat Soni Home";
+            }
+          
+        })
+ </script>
+</html>

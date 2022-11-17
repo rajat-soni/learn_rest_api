@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change text</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  
+</head>
+<body>
+   
+    <div class="left">
+        <form id="form_id">
+          <label for="post"> Write your post here</label>
+          <br><br>
+          <textarea name="post" id="input_id" cols="30" rows="10"></textarea>
+          <br> <br>
+          <div id="msg_id" style = "color : red;"></div>
+          <button type="submit">Post</button>
+        </form>
+      </div>
+      <div >
+        <p>Hello world post 2</p>
+        <span class="options">
+          <i class="fas fa-edit"></i>
+          <i class="fas fa-trash-alt"></i>
+        </span>
+      </div>
+    </div>
+        
+        
+      
+</body>
+<script> 
+        
+var form = document.getElementById("form_id");
+var input = document.getElementById("input_id");
+var msg = document.getElementById("msg_id");
+var posts = document.getElementById("posts_id"); 
+
+form_id.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("button clicked");
+
+    formValidation();
+});
+
+var formValidation = () => {
+    if (input.value === "") {
+            msg.innerText = 'Field should not be empty !';
+            console.log("failure");
+    } else {
+            console.log("successs");
+            acceptData();
+    }
+};
+var data = [];
+let acceptData = () => {
+  data["text"] = input.value;
+  console.log(data);
+};
+
+
+ </script>
+</html>

@@ -20,7 +20,7 @@ function loginData(){
     });
   }else{
 
-    $(".error").html("Fields should not be empty **").fadeToggle(3000);
+    $(".error").html("Fields should not be empty **").slideToggle('slow').fadeOut(2000);
   }
 }
 

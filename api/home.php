@@ -22,7 +22,7 @@
 session_start();
 //$_SESSION['name'] = login_success;
 $name = $_SESSION['login_success'];
-echo "<script type='text/javascript'>$('#msg').html('<p> Welcome to Admin: {$name} </p>').fadeOut(); 
+echo "<script type='text/javascript'>$('#msg').html('<p> Welcome to Admin: {$name} </p>').slideToggle('slow').fadeOut(2000); 
 </script> ";
 ?>
 

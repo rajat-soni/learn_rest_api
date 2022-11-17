@@ -18,8 +18,8 @@
     <body style="background-color: #D6EAF8;">
   
     <div class = "container mb-4">
-        <img id="example" src="image.png"   width="auto" height="150">
-       <p onclick = "changeImg()">Change me </p>
+        <img id="example" src="pepsi.png"   width="auto" height="150">
+       <p id = "click_me">Change me </p>
 </div>      
 </div>
 
@@ -27,15 +27,24 @@
 </div>
 </body>
 <script >
-    function changeImg(){
+    
             var image =  document.getElementById("example");
-            alert(image)
-            if(image.src.match("js_image.png")){
-              image.src="image.png";  
+            var click_id = document.getElementById("click_me");
+
+            click_id.addEventListener('click', 
+            () => {
+            
+            if(image.src.match("bottle.png")){
+              image.src="pepsi.png";  
             }else{
-                image.src = "js_image.png"
+                image.src = "bottle.png"
             }
-    }
+            
+        })
+
+        
+           
+    
         
     
    
