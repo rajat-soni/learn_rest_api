@@ -75,7 +75,16 @@ table, th, td {
     <span id = "Post"></span>
 </body>
 <script> 
-        
+
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
+
+
+   var isEditing=-1;     
 var form = document.getElementById("form");
 var button = document.getElementById("btnSub")
 var first = document.getElementById('name')
@@ -97,47 +106,94 @@ e.preventDefault()
 
     var validation = () =>{ // validation function //
 
+
       if( first.value === "" && mobile.value === "" && mobile.value === "" && textArea.value == "" ){
-          Post.innerHTML = "<p style = 'color: red'>not Login !</p>"
+          Post.innerHTML = "<p style = 'color: red'>not Login !</p>";
+          return;
       }else{
         Post.innerHTML = " <p style = 'color: green'>Login  successfully!</p>"
 
       }
-      creatData(); 
+
+      if(isEditing==-1){
+        creatData(); 
+      }else{
+        editPostEditData(isEditing)
+        
+      }
+      
 }
-var data  = {};
+
+
+var data  = [];
 var creatData = () =>{
 
 
+    const record={
+      name:first.value,
+      mobile:mobile.value,
+      address:textArea.value
+    }
 
-  data['name'] = first.value;
-  data['mobile'] = mobile.value;
-  data['address'] = textArea.value;
-  console.log(data['name']);
-  console.log(data['address']);
-  console.log(data['mobile']);
-  createPost()
-  editPost()
-  deletePost()
+    data.push( record );
+
+
+  // data['name'] = first.value;
+  // data['mobile'] = mobile.value;
+  // data['address'] = textArea.value;
+  // console.log(data['name']);
+  // console.log(data['address']);
+  // console.log(data['mobile']);
+  showRecords()
+//  editPost()
+ // deletePost()
 
 }
 
-var createPost = () => {
-  post.innerHTML += `<table style="width:100%">
+var showRecords = () => {
+  // post.innerHTML += `<table style="width:100%">
+  //     <tr>
+  //       <td>Employee Name</td>
+  //       <td>Mobile Number</td>
+  //       <td>Address</td>
+  //       <td>Action</td>
+  //     </tr>
+  //     <tr>
+  //       <td>${data.name}</td>
+  //       <td>${data.mobile}</td>
+  //       <td>${data.address}</td>
+        
+  //       <td><i onClick="editPost(this)" class="fas fa-edit"></i></td>
+  //      <td><i onClick="deletePost(this)" class="fas fa-trash-alt"></i></td>
+  //     </tr>
+  //   </table>`;
+
+  var records_html="";
+  data.forEach(function(record,i){
+    console.log(record)
+    records_html+=` <tr>
+        <td>${i}</td>
+        <td>${record.name}</td>
+        <td>${record.mobile}</td>
+        <td>${record.address}</td>
+        
+        <td><i onClick="editPost(${i})" class="fas fa-edit"></i>
+       <td><i onClick="deletePost(${i})" class="fas fa-trash-alt"></i></td>
+      </tr>`;
+
+  });
+
+
+  post.innerHTML = `<table style="width:100%">
       <tr>
+        <td>Serial No.</td>
         <td>Employee Name</td>
         <td>Mobile Number</td>
         <td>Address</td>
         <td>Action</td>
+
       </tr>
-      <tr>
-        <td>${data.name}</td>
-        <td>${data.mobile}</td>
-        <td>${data.address}</td>
-        
-        <td><i onClick="editPost(this)" class="fas fa-edit"></i></td>
-       <td><i onClick="deletePost(this)" class="fas fa-trash-alt"></i></td>
-      </tr>
+      ${records_html}
     </table>`;
 
   first.value = "";
@@ -146,17 +202,31 @@ var createPost = () => {
 
 };
 
-  
-
-  var editPost = (e) => {
-    first.value = e.parentElement.previousElementSibling.innerHTML;
-    mobile.value = e.parentElement.previousElementSibling.innerHTML;
-    textArea.value = e.parentElement.previousElementSibling.innerHTML;
-    e.parentElement.parentElement.remove();
+var editPost = (index) => {
+  first.value = data[index].name;
+    mobile.value = data[index].mobile;
+   textArea.value = data[index].address;
+   isEditing=index;
+   //data[index].parentElement.parentElement.remove();
+  };
+  var editPostEditData = (index) => {
+   data[index].name=first.value;
+   data[index].mobile=mobile.value ;
+   data[index].address=textArea.value ;
+   showRecords();
+   //data[index].parentElement.parentElement.remove();
   };
 
-  let deletePost = (e) => {
-   e.parentElement.parentElement.remove();
+  // var editPost = (e) => {
+  //   first.value = e.parentElement.previousElementSibling.innerHTML;
+  //   mobile.value = e.parentElement.previousElementSibling.innerHTML;
+  //   textArea.value = e.parentElement.previousElementSibling.innerHTML;
+  //   //e.parentElement.parentElement.remove();
+  // };
+
+  let deletePost = (index) => {
+  data.remove(index);
+  showRecords();
   };
 
 
