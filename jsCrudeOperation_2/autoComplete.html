@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title of the Document</title>
+  </head>
+  <body>
+    <form action="/form/submit" method="post">
+      <div class="form-group">
+        <input type="text" name="username" placeholder="Enter Name">
+        <input type="email" name="email" placeholder="Enter Email">
+        <button type="submit"> Submit </button>
+      </div>
+    </form>
+    <script>
+       
+      let tagArr = document.getElementsByTagName("input");
+      for (let i = 0; i < tagArr.length; i++) {
+        tagArr[i].autocomplete = 'off';
+        
+      }
+    
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="divId" class="someClass ">
+      <p>Object to array passing</p>
+    </div>
+    <script>
+     let array = [];  //array to object passing //
+
+let obj = {
+ name: 'Billy',
+ age: 30,
+ role: 'admin'
+ 
+};
+
+array.push(obj);
+array.forEach(function(obj,i){
+    var name = obj.name;
+    console.log(name);
+})
+    </script>
+  </body>
+</html>
