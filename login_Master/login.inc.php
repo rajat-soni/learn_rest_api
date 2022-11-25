@@ -50,7 +50,7 @@ if ($row === true) {
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-6 mt-5 shadow">
-                <div class="card mt-5 " style="opacity:0.9; background-color: #011b3e;">
+                <div class="card mt-5 " style="opacity:0.9; background-color: #219cdd;">
                     <div class="card-header text-muted pt-3 pb-3"><span style="color:white;">Login Form</span></div>
                     <div class="card-body">
                         <div class="row mt-4">

@@ -54,22 +54,24 @@ crossorigin="anonymous"
                 <input type="submit" class="btn btn-primary" id = "btn_id" name = submit></button>
               </div>
           </div>
-          <div id="msg"></div>
+       
          
       </form>
+      <div id="msg"></div>
   </div>
   </div>
 
   <script> 
+
   Array.prototype.remove = function(from, to) {
   var rest = this.slice((to || from) + 1 || this.length);
   this.length = from < 0 ? this.length + from : from;
   return this.push.apply(this, rest);
 };
+
     var isEditid = -1;
     var fname = document.getElementById('fname');
-    var mmobile = document.getElementById('mobile');
-    
+    var mmobile = document.getElementById('mobile'); 
     var ccity = document.getElementById('city');
     var aaddress = document.getElementById('address');
     var clkBtn = document.getElementById('btn_id');
@@ -119,26 +121,29 @@ crossorigin="anonymous"
         }
 
       objArry.push(rawData)  
-      showData();           
+      showData();        
     }
+   
 
-    var showEle  = "";
+
+  
     var showData = () => {
-       objArry.forEach(function(index,i){
+      var showEle  = "";
+       objArry.forEach(function(rawData,i) {
 
         showEle += `<tr>
                         <td>${i}</td>
-                        <td>${index.name}</td>
-                        <td>${index.mobile}</td>
-                        <td>${index.city}</td>
-                        <td>${index.address}</td>
+                        <td>${rawData.name}</td>
+                        <td>${rawData.mobile}</td>
+                        <td>${rawData.city}</td>
+                        <td>${rawData.address}</td>
                         <td><i onClick="editData(${i})" class="fas fa-edit"></i>
-                        <td><i onClick="removeData(${i})" class="fas fa-trash-alt"></i></td>
+                        <td><i onClick="deletePost(${i})" class="fas fa-trash-alt"></i></td>
                     </tr>`;
 
                  
                   });
-                    msg.innerHTML +=`<table class="table table-bordered">
+                    msg.innerHTML =`<table class="table table-bordered">
                    
                           <tr>
                             <td>Sr No</td>
@@ -147,13 +152,10 @@ crossorigin="anonymous"
                             <td scope="col">city</td>
                             <td scope="col">Address</td>
                             <td scope="col">Action</td>  
-                          </tr>
-                  
-                 
-             
-                    ${showEle}
+                          
+                            <td>${showEle}</td>
                
-      
+                          </tr>
                                
           </table>`;
 
@@ -170,8 +172,8 @@ var editData = (index) => {
       mmobile.value = objArry[index].mobile;
       ccity.value = objArry[index].city;
       aaddress.value = objArry[index].address;
-      isEditid = index;
-}
+       isEditid = index;
+};
 
 
 var isEditData = (index) => {
@@ -179,14 +181,15 @@ var isEditData = (index) => {
   objArry[index].mobile = mmobile.value;
   objArry[index].city = ccity.value;
   objArry[index].address = aaddress.value;
+
   showData();
 }
 
 
-    var removeData = (index) => {
+    var deletePost = (index) => {
       objArry.remove(index);
       showData();
-    }
+    };
 
     </script>
 </body>
