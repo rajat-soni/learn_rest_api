@@ -67,17 +67,6 @@ table, th, td {
    
     <br><br>
     <form>
-
-
-
-
-
-
-
-
-
-
-
           Name&nbsp;<input type = "text" id = "name"><br><br>
           mobile&nbsp;<input type = "number" id = "mobile"><br><br>
           <span style = "margin-top: -10px;">Address</span>&nbsp;<textarea id = "address" row = "20" place holder = "type your address here"></textarea><br><br>
@@ -97,7 +86,7 @@ Array.prototype.remove = function(from, to) {
 };
 
 
-   var isEditing=-1;     
+var isEditing=-1;     
 var form = document.getElementById("form");
 var button = document.getElementById("btnSub")
 var first = document.getElementById('name')                                                                                                                                                                                                                                                                         
@@ -108,8 +97,6 @@ var post = document.getElementById('post');
 
 button.addEventListener('click', (e) => { //prevent default functionality //
 e.preventDefault()
-
-
   var nameValue = first.value;
   var mobileValue = mobile.value;
   var textValue = textArea.value;
@@ -118,11 +105,10 @@ e.preventDefault()
 });
 
     var validation = () =>{ // validation function //
-
-
       if( first.value === "" && mobile.value === "" && mobile.value === "" && textArea.value == "" ){
           Post.innerHTML = "<p style = 'color: red'>not Login !</p>";
           return;
+
       }else{
         Post.innerHTML = " <p style = 'color: green'>Login  successfully!</p>"
 
@@ -135,7 +121,7 @@ e.preventDefault()
         
       }
       
-}
+    }
 
 
 var data  = [];
@@ -149,37 +135,11 @@ var creatData = () =>{
     }
 
     data.push( record );
-
-
-  // data['name'] = first.value;
-  // data['mobile'] = mobile.value;
-  // data['address'] = textArea.value;
-  // console.log(data['name']);
-  // console.log(data['address']);
-  // console.log(data['mobile']);
   showRecords()
-//  editPost()
- // deletePost()
 
 }
 
 var showRecords = () => {
-  // post.innerHTML += `<table style="width:100%">
-  //     <tr>
-  //       <td>Employee Name</td>
-  //       <td>Mobile Number</td>
-  //       <td>Address</td>
-  //       <td>Action</td>
-  //     </tr>
-  //     <tr>
-  //       <td>${data.name}</td>
-  //       <td>${data.mobile}</td>
-  //       <td>${data.address}</td>
-        
-  //       <td><i onClick="editPost(this)" class="fas fa-edit"></i></td>
-  //      <td><i onClick="deletePost(this)" class="fas fa-trash-alt"></i></td>
-  //     </tr>
-  //   </table>`;
 
   var records_html="";
   data.forEach(function(record,i){
@@ -232,70 +192,5 @@ var editPost = (index) => {
   data.remove(index);
   showRecords();
   };
-
-
-// var Last = document.querySelector('last_name');
-// var name = first.value
-// var lname  = Last.value
-
-// var msg = document.getElementById("msg");
-// var posts = document.getElementById("posts"); 
-
-// form.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     console.log("button clicked");
-
-//     formValidation();
-// });
-
-// var formValidation = () => {
-//     if (input.value === "") {
-//             msg.innerText = 'Field should not be empty !';
-//             console.log("failure");
-//     } else {
-//             console.log("successs");
-//             acceptData();
-           
-//     }
-// };
-
-//     var data = {};
-// var acceptData = () => {
-//   data["text"] = input.value;
-// console.log(data);
-//  createPost();
-//  deletePost();
-// };
-
-
-// var createPost = () => {
-//   posts.innerHTML += `
-//   <div>
-//     <table>
-//         <thead> Emaplyee name</thead>
-//         <tbody>
-//           <tr>
-//     <td>${data.text}</td>
-//     <span class="options">
-//       <i onClick="editPost(this)" class="fas fa-edit"></i>
-//       <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
-//     </span>
-//     </tr>
-//   </tbody>
-//   </table>
-//   `;
-//   input.value = "";
-
-// };
-
-// let deletePost = (e) => {
-//   e.parentElement.parentElement.remove();
-//  };
-
-//  let editPost = (e) => {
-//   input.value = e.parentElement.previousElementSibling.innerHTML;
-//   e.parentElement.parentElement.remove();
-// };
-
  </script>
 </html>

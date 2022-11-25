@@ -59,57 +59,67 @@ crossorigin="anonymous"
       </form>
   </div>
   </div>
+
   <script> 
   Array.prototype.remove = function(from, to) {
   var rest = this.slice((to || from) + 1 || this.length);
   this.length = from < 0 ? this.length + from : from;
   return this.push.apply(this, rest);
 };
-var isEditid = -1;
+    var isEditid = -1;
     var fname = document.getElementById('fname');
-    var mobile = document.getElementById('mobile');
-    var city = document.getElementById('city');
-    var address = document.getElementById('address');
+    var mmobile = document.getElementById('mobile');
+    
+    var ccity = document.getElementById('city');
+    var aaddress = document.getElementById('address');
     var clkBtn = document.getElementById('btn_id');
     var msg = document.getElementById('msg');
+
+    
        
     clkBtn.addEventListener('click', (e) => {
         e.preventDefault();
-
+        console.log(clkBtn);
+        var name = fname.value;
+        var mobile = mmobile.value;
+        var city  = ccity.value;
+        var address = aaddress.value;
           validation();
          
     });
 
     var validation = ()=> {
-        if(fname.value === ""  &&  mobile.value === "" && city.value === "" && address.value === ""){
+        if(fname.value === ""  &&  mmobile.value === "" && ccity.value === "" && aaddress.value === ""){
           msg.innerText = "Not login";
           return;
         }else{
-          if(isEditid == -1){
-            
-              msg.innerText = "Login successfully !";
-              saveData();
-          }else{
-            isEditData(isEditid);
-             
-          }
+     
+          msg.innerText = "Data add success fully ";
           
         }
+
+        if(isEditid == -1){
+           
+           saveData();
+           
+       }else{
+         isEditData(isEditid);
+          
+       }
    }
+
+
     var objArry = [];
     var saveData = () => {
         const rawData = { 
           name : fname.value,
-          mobile : mobile.value,
-          city : city.value,
-          address : address.value
+          mobile : mmobile.value,
+          city :   ccity.value,
+          address : aaddress.value
         }
 
-      objArry.push(rawData)
-     
-      showData();
-          
-      
+      objArry.push(rawData)  
+      showData();           
     }
 
     var showEle  = "";
@@ -148,27 +158,28 @@ var isEditid = -1;
           </table>`;
 
       fname.value = "";
-      mobile.value = "";
-      city.value = "";
-      address.value = "";
+      mmobile.value = "";
+      ccity.value = "";
+      aaddress.value = "";
                            
 }
 
 var editData = (index) => {
 
       fname.value = objArry[index].name;
-      mobile.value = objArry[index].mobile;
-      city.value = objArry[index].city;
-      address.value = objArry[index].address;
+      mmobile.value = objArry[index].mobile;
+      ccity.value = objArry[index].city;
+      aaddress.value = objArry[index].address;
       isEditid = index;
 }
 
 
 var isEditData = (index) => {
   objArry[index].name = fname.value;
-  objArry[index].mobile = mobile.value;
-  objArry[index].city = city.value;
-  objArry[index].address = address.value;
+  objArry[index].mobile = mmobile.value;
+  objArry[index].city = ccity.value;
+  objArry[index].address = aaddress.value;
+  showData();
 }
 
 
