@@ -6,24 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Js Crud Operation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+  crossorigin="anonymous"
+  />
+  
   <script
-  src="https://code.jquery.com/jquery-3.6.1.js"
-  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-  crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-  <link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-rel="stylesheet"
-integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-crossorigin="anonymous"
-/>
-
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-crossorigin="anonymous"></script>
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+  crossorigin="anonymous"
+  ></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -111,7 +112,7 @@ crossorigin="anonymous"></script>
 
         var arrData = [];
         var  saveFormData = () => { // function for save data //
-            const  obj =  {
+            const  rawData =  {
                 eName : Ename.value,
                 eMobile : mobile.value,
                 empState :state.value,
@@ -121,27 +122,31 @@ crossorigin="anonymous"></script>
             
             };
 
-            arrData.push(obj);
+            arrData.push(rawData);
             showData();
         }
 
-        var showTbl = '';
+        
         var showData = () => {
-            arrData.forEach(function(obj,i){  // function for retrie data //
+            var showTbl = '';
+            arrData.forEach(function(rawData,i){  // function for retrie data //
+              
                 var showTbl =+ `<tr>
+                    
                                     <td>${i}</td>
-                                    <td>${obj.eName}</td>
-                                    <td>${obj.eMobile}</td>
-                                    <td>${obj.eState}</td>
-                                    <td>${obj.eCity}</td>
-                                    <td>${obj.eState}</td>
-                                    <td>${obj.eEmail}</td>
-                                    <td>${obj.ePass}</td>
+                                    <td>${rawData.eName}</td>
+                                    <td>${rawData.eMobile}</td>
+                                    <td>${rawData.eState}</td>
+                                    <td>${rawData.eCity}</td>
+                                    <td>${rawData.eState}</td>
+                                    <td>${rawData.eEmail}</td>
+                                    <td>${rawData.ePass}</td>
                                     <td><i onClick="editData(${i})" class="fas fa-edit"></i>
                                     <td><i onClick="deletePost(${i})" class="fas fa-trash-alt"></i></td>
                                 </tr>`;
             });
-                tbl.innerHTML = ` <table style="width:100%">
+
+                tbl.innerHTML = `<table class="table table-bordered">
                     <tr>
                         <td>Serial No.</td>
                         <td>Employee Name</td>
@@ -153,15 +158,16 @@ crossorigin="anonymous"></script>
                         <td>Action</td>
 
                     </tr>
-                ${showTbl}
+                    <td>${showTbl}</td>
+               
         </table>`;
 
-    Ename.value = ""
-    mobile.value= ""
-    state.value= ""
-    city.value = ""
-    email.value= ""
-    password.value= ""
+    Ename.value = "";
+    mobile.value= "";
+    state.value= "";
+    city.value = "";
+    email.value= "";
+    password.value= "";
 
         }
            
