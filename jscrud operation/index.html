@@ -31,8 +31,8 @@
         <div class="row">
             
             <div class="col-6 mt-2 ">
-                <div class="card mt-5  shadow" style="opacity:0.8; background-color: ">
-                    <div class="card-header text-muted pt-3 pb-3"><span style="color: ">Sign Up Form</span></div>
+                <div class="card mt-5 shadow"  style="opacity:0.8;">
+                    <div class="card-header text-muted pt-3 pb-3 bg-info">Sign Up Form</span></div>
                     <div class="card-body">
                         <div class="row mt-2">
                             <div class="col-6 mt-3 mb-3"><img src = "../image/loginImages.jpg" style = "width: 100%; height: 80%;"></div>
@@ -44,19 +44,19 @@
                                 <input type="text" class="form-control" placeholder="Type your mobile no here" name="mobile" id="mobile" style="border-radius: 0px;"><br>
                                 <select class="form-control" id = "state">
                                     <option value = "">Choose State</option>
-                                    <option value = "2">Maharashtra</option>
-                                    <option value = "3">Gujart</option>
-                                    <option value = "4">Uttar Pradesh</option>
-                                    <option value = "5">Madhya Pradesh</option>
+                                    <option value = "Maharashtra">Maharashtra</option>
+                                    <option value = "Gujart">Gujart</option>
+                                    <option value = "Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value = "Madhya Pradesh">Madhya Pradesh</option>
                                     
                                    </select><br>
                                <select class="form-control" id = "city">
                                 <option value = "">Choose city</option>
-                                <option value = "1">Pune</option>
-                                <option value = "2">Mumbai</option>
-                                <option value = "3">Gandhi Nagar</option>
-                                <option value = "4">Lucknow</option>
-                                <option value = "5">Indor</option>
+                                <option value = "Pune">Pune</option>
+                                <option value = "Mumbai">Mumbai</option>
+                                <option value = "Gandhi Nagar">Gandhi Nagar</option>
+                                <option value = "Lucknow">Lucknow</option>
+                                <option value = "Indor">Indor</option>
                                </select><br>
                                 <input type="text" class="form-control" placeholder="Type your email here" name="email" id="email" style="border-radius: 0px;"><br>
                                 <input type="text" class="form-control" placeholder="Type your password here" name="password" id="password" style="border-radius: 0px;"><br>
@@ -68,16 +68,24 @@
                     </div>
 
                     <!-- <div class=" text-danger" id = "msg"></div> -->
-                    <div class="card-footer text-muted pt-3 pb-3"> All Rights Reserved in &copy; 2022<span id = "msg" style = "float:right; "></span></div>
+                    <div class="card-footer text-muted pt-3 pb-3 bg-info"> All Rights Reserved in &copy; 2022<span id = "msg" style = "float:right; "></span></div>
 
                 </div>
             </div>
-            <div class="col-md-3" id = "showTbl"></div>
+            <div class="col-md-3 " id = "showTbl" style = "margin-top: 55px;"></div>
         </div>
     </div>
     <!--<footer class="fixed-bottom" style = "float: right; color">All Rights Reserved in Ajax Crud &copy;</footer> -->
 <script>
 
+    // Prototype script for delete row //
+    Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
+
+     var editId = -1;
      var Ename = document.getElementById('Ename')
      var mobile = document.getElementById('mobile')
      var state  = document.getElementById('state')
@@ -104,50 +112,60 @@
         if(Ename.value == "" &&  mobile.value == "" &&  city.value == "" &&  state.value == "" && email.value == "" && password.value == "" ){
     
             msg.innerHTML= "<p style='color:red;'>Data not Submitted !</p>" 
+            return;
         }else{
-            saveFormData();
+            
             msg.innerHTML = "<p style ='color:green;'>Data submitted successfully !</p>"
+            
+        }
+        if(editId === -1){
+            saveFormData();
+        }else{
+            isEditDataShow(editId)
         }
     }
 
         var arrData = [];
         var  saveFormData = () => { // function for save data //
-            const  rawData =  {
+            const rawData =  {
                 eName : Ename.value,
                 eMobile : mobile.value,
-                empState :state.value,
+                eState :state.value,
                 eCity : city.value,
                 eEmail : email.value,
                 ePass : password.value
             
             };
+            console.log(rawData);
 
             arrData.push(rawData);
             showData();
+            
         }
 
-        
+    
         var showData = () => {
-            var showTbl = '';
+            var showTbl = "";
             arrData.forEach(function(rawData,i){  // function for retrie data //
-              
-                var showTbl =+ `<tr>
+              console.log(rawData.eCity)
+                showTbl += `<tr>
                     
                                     <td>${i}</td>
-                                    <td>${rawData.eName}</td>
+                                    <td style = 'width: 40%;'>${rawData.eName}</td>
                                     <td>${rawData.eMobile}</td>
                                     <td>${rawData.eState}</td>
                                     <td>${rawData.eCity}</td>
-                                    <td>${rawData.eState}</td>
                                     <td>${rawData.eEmail}</td>
                                     <td>${rawData.ePass}</td>
                                     <td><i onClick="editData(${i})" class="fas fa-edit"></i>
-                                    <td><i onClick="deletePost(${i})" class="fas fa-trash-alt"></i></td>
-                                </tr>`;
-            });
+                                    <i onClick="deletePost(${i})" class="fas fa-trash-alt"></i></td>
 
-                tbl.innerHTML = `<table class="table table-bordered">
-                    <tr>
+                                </tr>`;
+                                
+            });
+          
+                tbl.innerHTML = `<table class="table table-bordered shadow table-responsive" style = "width: 100%;">
+                    <tr class="bg-info text-muted">
                         <td>Serial No.</td>
                         <td>Employee Name</td>
                         <td>Mobile Number</td>
@@ -156,19 +174,44 @@
                         <td>Email</td>
                         <td>Password</td>
                         <td>Action</td>
-
                     </tr>
-                    <td>${showTbl}</td>
+                    ${showTbl}
+                    
                
-        </table>`;
+                </table>`;
 
-    Ename.value = "";
-    mobile.value= "";
-    state.value= "";
-    city.value = "";
-    email.value= "";
-    password.value= "";
+                Ename.value = "";
+                mobile.value= "";
+                state.value= "";
+                city.value = "";
+                email.value= "";
+                password.value= "";
+               
 
+        }
+        var editData = (index)=> {
+                Ename.value = arrData[index].eName;
+                mobile.value = arrData[index].eMobile;
+                state.value = arrData[index].eState;
+                city.value = arrData[index].eCity;
+                email.value = arrData[index].eEmail;
+                password.value = arrData[index].ePass;
+                editId = index;
+                
+        }
+        var isEditDataShow = (index) =>{
+            arrData[index].eName = Ename.value;
+            arrData[index].eMobile = mobile.value;
+            arrData[index].eState =   state.value;
+            arrData[index].eCity = city.value;
+            arrData[index].eEmail = email.value;
+            arrData[index].ePass = password.value;
+            showData();
+        }
+    
+        var deletePost = (index) => {
+            arrData.remove(index);
+            showData();
         }
            
      
